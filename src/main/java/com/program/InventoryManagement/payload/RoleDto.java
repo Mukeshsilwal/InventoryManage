@@ -13,6 +13,6 @@ import java.util.Set;
 public class RoleDto {
     private String  role;
     private int id;
-    private Set<PermissionDto> permissionset;
+//    private Set<PermissionDto> permissionset;
 //    private UserDto user;
 }

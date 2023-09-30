@@ -52,21 +52,6 @@ public class OrderController {
                  this.orderService.deleteOrder(orderId);
                  return new ResponseEntity<>(new ApiResponse("Delete successfully",HttpStatus.OK),HttpStatus.OK);
     }
-//    @GetMapping("/user/uId")
-//    public ResponseEntity<List<OrderDto>> getUserById(@PathVariable Integer uId){
-//        List<OrderDto> orderDtos=this.orderService.getOrderByUser(uId);
-//        return new ResponseEntity<>(orderDtos,HttpStatus.OK);
-//    }
-//    @GetMapping("/product/productId")
-//    public ResponseEntity<List<OrderDto>> getProductById(@PathVariable Integer productId){
-//                List<OrderDto> orderDtos=this.orderService.getOrderByProduct(productId);
-//                return new ResponseEntity<>(orderDtos,HttpStatus.OK);
-//    }
-//    @GetMapping("/supplier/supplierId")
-//    public ResponseEntity<List<OrderDto>> getSupplierById(@PathVariable Integer supplierId){
-//               List<OrderDto> orderDtos=this.orderService.getOrderBySupplier(supplierId);
-//               return new ResponseEntity<>(orderDtos,HttpStatus.OK);
-//    }
     @PostMapping("/user/{uId}/product/{productId}/supplier/{supplierId}")
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto,@PathVariable Integer uId,
                                                 @PathVariable Integer productId,

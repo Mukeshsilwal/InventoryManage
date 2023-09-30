@@ -16,7 +16,5 @@ public class SupplierDto {
     private String supplierName;
     private int supplierId;
     private String location;
-    private Set<ProductDto> product;
-    private Set<OrderDto> order;
     private UserDto user;
 }

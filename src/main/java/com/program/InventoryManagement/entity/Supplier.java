@@ -29,8 +29,8 @@ public class Supplier {
     @ManyToOne
     @JoinColumn(name="uId",referencedColumnName = "uId")
     private User user;
-    @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER)
     Set<Product> products=new HashSet<>();
-    @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER)
     Set<Order> orders=new HashSet<>();
 }

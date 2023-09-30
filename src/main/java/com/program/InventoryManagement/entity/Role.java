@@ -29,7 +29,7 @@ public class Role {
     private User user;
     @Enumerated(EnumType.STRING)
     private Roles roles;
-    @OneToMany(mappedBy = "role",fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
     private Set<Permission> permissionSet;
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities1=permissionSet.stream().map((permission)->new SimpleGrantedAuthority(permission.getPermissions())).collect(Collectors.toList());

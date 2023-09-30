@@ -42,3 +42,8 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Mukeshsilwal/InventoryManage.git
 git push -u origin main
+
+
+git remote add origin https://gitlab.com/Mukeshsilwal/inventorymanagement.git
+git branch -M main
+git push -uf origin main

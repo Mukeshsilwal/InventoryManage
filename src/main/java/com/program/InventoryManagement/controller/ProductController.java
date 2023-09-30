@@ -51,8 +51,7 @@ public class ProductController {
     @PostMapping("/user/{uId}/supplier/{supplierId}/")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto,
                                                     @PathVariable Integer uId,
-                                                    @PathVariable Integer supplierId,
-                                                    @PathVariable Integer cartId
+                                                    @PathVariable Integer supplierId
                                                     ){
         ProductDto productDto1=this.productService.createProduct(productDto,uId,supplierId);
         return new ResponseEntity<>(productDto1,HttpStatus.CREATED);

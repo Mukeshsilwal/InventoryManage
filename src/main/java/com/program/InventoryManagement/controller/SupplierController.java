@@ -26,7 +26,7 @@ public class SupplierController {
         List<SupplierDto> supplierDtos=this.supplierService.getAllUser();
         return new ResponseEntity<>(supplierDtos,HttpStatus.OK);
     }
-    @PostMapping("/")
+    @PostMapping("/post")
     public ResponseEntity<SupplierDto> createSupplier(@RequestBody SupplierDto supplierDto){
         SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto);
         return new ResponseEntity<>(supplierDto1,HttpStatus.CREATED);
