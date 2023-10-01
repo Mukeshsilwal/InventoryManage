@@ -28,25 +28,25 @@ public class OrderController {
                 OrderDto orderDto=this.orderService.getOrderById(orderId);
                 return new ResponseEntity<>(orderDto, HttpStatus.OK);
     }
-    @GetMapping("/")
+    @GetMapping("/get")
     public ResponseEntity<List<OrderDto>> getAllOrder(){
                 logger.info("Get Mapping endpoint is working perfectly");
                 List<OrderDto> orderDto=this.orderService.getAllOrder();
                 return new ResponseEntity<>(orderDto,HttpStatus.OK);
     }
-    @PostMapping("/")
+    @PostMapping("/create")
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
                 logger.info("Order Is created successfully without error");
                 OrderDto orderDto1 = this.orderService.createOrder(orderDto);
                 return new ResponseEntity<>(orderDto1, HttpStatus.CREATED);
     }
-    @PutMapping("/{orderId}")
+    @PutMapping("/update/{orderId}")
     public ResponseEntity<OrderDto> updateOrder(@RequestBody OrderDto orderDto,@PathVariable Integer orderId){
                 logger.info("Data is being updated successfully");
                 OrderDto orderDto1=this.orderService.updateOrder(orderId,orderDto);
                 return new ResponseEntity<>(orderDto1,HttpStatus.OK);
     }
-    @DeleteMapping("/{orderId}")
+    @DeleteMapping("/delete/{orderId}")
     public ResponseEntity<ApiResponse> deleteOrder(@PathVariable Integer orderId){
                  logger.info("Delete endpoint is work perfectly");
                  this.orderService.deleteOrder(orderId);

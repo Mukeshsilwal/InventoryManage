@@ -35,7 +35,7 @@ public class RoleController {
         this.roleService.deleteRole(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Role is deleted successfully",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user/{uId}")
+    @PostMapping("/super-admin/user/{uId}")
     public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto,@PathVariable Integer uId){
         RoleDto roleDto1=this.roleService.createUser(roleDto,uId);
         return new ResponseEntity<>(roleDto1,HttpStatus.CREATED);

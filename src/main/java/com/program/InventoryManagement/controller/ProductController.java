@@ -22,7 +22,7 @@ public class ProductController {
     private final ProductService productService;
     private Logger logger= LoggerFactory.getLogger(ProductController.class);
 
-    @GetMapping("/")
+    @GetMapping("/get")
     public ResponseEntity<List<ProductDto>> getAllProduct(){
         logger.info("Get endpoint is hitted");
         List<ProductDto> productDto=this.productService.getAllProduct();
@@ -33,17 +33,17 @@ public class ProductController {
         ProductDto productDto=this.productService.getProductById(id);
         return new ResponseEntity<>(productDto,HttpStatus.OK);
     }
-    @PostMapping("/")
+    @PostMapping("/admin/products/create")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
         ProductDto productDto1=this.productService.createProduct(productDto);
         return new ResponseEntity<>(productDto1,HttpStatus.CREATED);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/admin/products/{id}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable Integer id,@RequestBody ProductDto productDto){
         ProductDto productDto1=this.productService.updateProduct(id,productDto);
         return new ResponseEntity<>(productDto1,HttpStatus.OK);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/products/{id}")
     public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Integer id){
         this.productService.deleteProductById(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Product is deleted",HttpStatus.OK),HttpStatus.OK);
@@ -56,13 +56,4 @@ public class ProductController {
         ProductDto productDto1=this.productService.createProduct(productDto,uId,supplierId);
         return new ResponseEntity<>(productDto1,HttpStatus.CREATED);
     }
-//    @PostMapping("/cart/{id}")
-//    public ResponseEntity<ProductDto> createCart(@RequestBody ProductDto productDto,@PathVariable Integer id){
-//        ProductDto productDto1=this.productService.createCart(productDto,id);
-//        return new ResponseEntity<>(productDto1,HttpStatus.CREATED);
-//    }
-
-
-
-
 }

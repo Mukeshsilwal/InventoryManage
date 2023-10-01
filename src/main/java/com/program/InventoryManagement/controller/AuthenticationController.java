@@ -43,12 +43,17 @@ public class AuthenticationController {
 
     @PostMapping("/create_user")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user)  {
-
-
-          UserDto userDto = this.userService.createUser(user);
+            UserDto userDto = this.userService.createUser(user);
             return new ResponseEntity<>(userDto, HttpStatus.CREATED);
 
     }
+    @PostMapping("/super-admin")
+    public ResponseEntity<UserDto> createUser1(@RequestBody UserDto user)  {
+        UserDto userDto = this.userService.createUser(user);
+        return new ResponseEntity<>(userDto, HttpStatus.CREATED);
+
+    }
+
 
 
 
