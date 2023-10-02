@@ -20,8 +20,8 @@ public class Permission {
     private int permissionId;
     private String permissions;
     @ManyToOne
-    @JoinColumn(name = "id",referencedColumnName = "id")
-    private Role role;
+    @JoinColumn(name = "uId",referencedColumnName = "uId")
+    private User user;
     @Transient
     @Enumerated(EnumType.STRING)
     private Permission1 permission1;

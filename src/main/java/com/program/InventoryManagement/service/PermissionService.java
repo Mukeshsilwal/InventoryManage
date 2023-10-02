@@ -8,6 +8,6 @@ public interface PermissionService {
     PermissionDto createPermission(PermissionDto permissionDto);
     void deleteById(Integer id);
     List<PermissionDto> getAllPermission();
-    PermissionDto createPermissionToRole(PermissionDto permissionDto,Integer id);
+    PermissionDto createPermissionToUser(PermissionDto permissionDto,Integer id);
     }
 

@@ -27,15 +27,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user=this.userRepo.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("User Not Found"));
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        // Load roles and permissions for the user
         for (Role role : user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getRole()));
-            for (Permission permission : role.getPermissionSet()) {
+            for (Permission permission : user.getPermissions()) {
                 authorities.add(new SimpleGrantedAuthority(permission.getPermissions()));
             }
         }
-       return org.springframework.security.core.userdetails.User.withUsername(user.getUsername()).password(user.getPassword())
-               .disabled(user.isEnabled()).authorities(user.getAuthorities()).build();
+//       return org.springframework.security.core.userdetails.User.withUsername(user.getUsername()).password(user.getPassword())
+//               .disabled(user.isEnabled()).authorities(user.getAuthorities()).build();
+        return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
+                .password(user.getPassword()).disabled(user.isEnabled()).authorities(authorities).build();
     }
 }

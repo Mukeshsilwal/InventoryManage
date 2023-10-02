@@ -21,7 +21,7 @@ public class SupplierController {
         SupplierDto supplierDto=this.supplierService.getSupplierById(id);
         return new ResponseEntity<>(supplierDto, HttpStatus.OK);
     }
-    @GetMapping("/")
+    @GetMapping("/get")
     public ResponseEntity<List<SupplierDto>> getAllSupplier(){
         List<SupplierDto> supplierDtos=this.supplierService.getAllUser();
         return new ResponseEntity<>(supplierDtos,HttpStatus.OK);

@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private String password;
 
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Supplier> suppliers=new HashSet<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     Set<Product> products=new HashSet<>();
@@ -38,6 +38,8 @@ public class User implements UserDetails {
     Set<Order> orders=new HashSet<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     Set<Role> roles=new HashSet<>();
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    private Set<Permission> permissions;
 
     public User(String mail, String number) {
         this.email=mail;

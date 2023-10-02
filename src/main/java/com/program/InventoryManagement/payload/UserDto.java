@@ -17,9 +17,9 @@ public class UserDto {
 
     private int uId;
     private String email;
-
     private String password;
     private Set<RoleDto> roles;
+    private Set<PermissionDto> permissions;
 
 
 }

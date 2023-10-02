@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/{uId}")
+    @GetMapping("/admin/get/{uId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Integer uId){
         UserDto userDto=this.userService.getUserById(uId);
      return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -26,17 +26,17 @@ public class UserController {
         List<UserDto> userDtos=this.userService.getAllUser();
        return new ResponseEntity<>(userDtos,HttpStatus.OK);
     }
-    @PostMapping("/")
+    @PostMapping("/admin/create")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
         UserDto userDto1=this.userService.createUser(userDto);
         return new ResponseEntity<>(userDto1,HttpStatus.CREATED);
     }
-    @PutMapping("/{uId}")
+    @PutMapping("/admin/update/{uId}")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable Integer uId){
         UserDto userDto1=this.userService.updateUser(uId,userDto);
         return new ResponseEntity<>(userDto1,HttpStatus.OK);
     }
-    @DeleteMapping("/{uId}")
+    @DeleteMapping("/admin/delete/{uId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer uId){
         this.userService.deleteUser(uId);
         return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted",HttpStatus.OK),HttpStatus.OK);

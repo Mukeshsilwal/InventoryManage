@@ -51,7 +51,6 @@ public class AuthenticationController {
     public ResponseEntity<UserDto> createUser1(@RequestBody UserDto user)  {
         UserDto userDto = this.userService.createUser(user);
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);
-
     }
 
 

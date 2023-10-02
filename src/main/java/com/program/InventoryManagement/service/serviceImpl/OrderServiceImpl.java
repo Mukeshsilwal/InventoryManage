@@ -68,9 +68,6 @@ public class OrderServiceImpl implements OrderService {
 
             Order order=this.orderRepo.findById(orderId).orElseThrow(()->new ResourceNotFoundException("Order","orderId",orderId));
             this.orderRepo.delete(order);
-
-
-
     }
 
     @Override

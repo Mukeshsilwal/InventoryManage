@@ -31,9 +31,9 @@ public class PermissionController {
         this.permissionService.deleteById(id);
         return new ResponseEntity<>(new ApiResponse("Permission is deleted",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/role/{id}")
-    public ResponseEntity<PermissionDto> createPermissionBasedRole(@RequestBody PermissionDto permissionDto,@PathVariable Integer id){
-        PermissionDto permissionDto1=this.permissionService.createPermissionToRole(permissionDto,id);
+    @PostMapping("/user/{uId}")
+    public ResponseEntity<PermissionDto> createPermissionBasedRole(@RequestBody PermissionDto permissionDto,@PathVariable Integer uId){
+        PermissionDto permissionDto1=this.permissionService.createPermissionToUser(permissionDto,uId);
         return new ResponseEntity<>(permissionDto1,HttpStatus.CREATED);
     }
 

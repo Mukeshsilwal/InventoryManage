@@ -2,6 +2,7 @@ package com.program.InventoryManagement.service.serviceImpl;
 
 import com.program.InventoryManagement.entity.Permission;
 import com.program.InventoryManagement.entity.Role;
+import com.program.InventoryManagement.entity.User;
 import com.program.InventoryManagement.exception.ResourceNotFoundException;
 import com.program.InventoryManagement.payload.PermissionDto;
 import com.program.InventoryManagement.repository.PermissionRepo;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class PermissionServiceImpl implements PermissionService {
     private final PermissionRepo permissionRepo;
     private final RoleRepo roleRepo;
+    private final UserRepo userRepo;
     private final ModelMapper  modelMapper;
     @Override
     public PermissionDto createPermission(PermissionDto permissionDto) {
@@ -43,10 +45,10 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public PermissionDto createPermissionToRole(PermissionDto permissionDto, Integer id) {
-        Role role=this.roleRepo.findById(id).orElseThrow();
+    public PermissionDto createPermissionToUser(PermissionDto permissionDto, Integer uId) {
+        User user =this.userRepo.findById(uId).orElseThrow(()->new ResourceNotFoundException("User","uId",uId));
         Permission permission=this.dtoToPermission(permissionDto);
-        permission.setRole(role);
+        permission.setUser(user);
         Permission permission1=this.permissionRepo.save(permission);
         return permissionToDto(permission1);
     }
