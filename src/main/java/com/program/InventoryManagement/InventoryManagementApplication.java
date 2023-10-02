@@ -1,6 +1,4 @@
 package com.program.InventoryManagement;
-
-import com.program.InventoryManagement.GmailSent.GmailSender;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
