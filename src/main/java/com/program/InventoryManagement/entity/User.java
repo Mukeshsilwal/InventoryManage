@@ -1,17 +1,12 @@
 package com.program.InventoryManagement.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.program.InventoryManagement.payload.SupplierDto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,9 +24,6 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    Set<Supplier> suppliers=new HashSet<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     Set<Product> products=new HashSet<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
@@ -40,7 +32,6 @@ public class User implements UserDetails {
     Set<Role> roles=new HashSet<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Permission> permissions;
-
     public User(String mail, String number) {
         this.email=mail;
         this.password=number;
@@ -49,8 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities1=roles.stream().map((role)->new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
-        return authorities1;
+        return roles.stream().map((role)->new SimpleGrantedAuthority(role.getRoles().name())).collect(Collectors.toList());
     }
 
     @Override

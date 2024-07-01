@@ -6,8 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,18 +21,19 @@ import java.util.Set;
 @Table(name="product_")
 public class Product {
     private String productName;
-    private Date expireDate;
+    private LocalDateTime expireDate;
     private String stock;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    private int id;
     private int productNo;
     @ManyToOne
     @JoinColumn(name="uId")
     private User user;
-    @OneToMany(mappedBy = "product")
-    Set<Order> orders=new HashSet<>();
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+    List<OrderDetails> orderDetails;
     @ManyToOne
-    @JoinColumn(name="supplierId")
+    @JoinColumn(name = "supplier_id",referencedColumnName = "supplierId")
     private Supplier supplier;
+
 }

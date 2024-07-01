@@ -1,13 +1,10 @@
 package com.program.InventoryManagement.configuration;
-import com.program.InventoryManagement.entity.Permission1;
-import com.program.InventoryManagement.entity.Roles;
 import com.program.InventoryManagement.security.CustomUserDetailsService;
 import com.program.InventoryManagement.security.JwtAuthenticationFilter;
 import com.program.InventoryManagement.security.JwtEntryPoint1;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,34 +23,28 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final JwtEntryPoint1 jwtEntryPoint;
-    private final UserDetailsService userDetailsService;
 
 
-    public SecurityConfig(@Lazy JwtAuthenticationFilter jwtAuthenticationFilter, JwtEntryPoint1 jwtEntryPoint, UserDetailsService userDetailsService) {
+    public SecurityConfig(@Lazy JwtAuthenticationFilter jwtAuthenticationFilter, JwtEntryPoint1 jwtEntryPoint) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.jwtEntryPoint = jwtEntryPoint;
-        this.userDetailsService = userDetailsService;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/csv/**","/csv1/**","/auth/login").permitAll()
-                .antMatchers("/api3/**").hasAnyAuthority("ADMIN","SUPER-ADMIN")
-                .antMatchers("/api3/user/{uId}","/api3/get","/api3/get/{id}").hasAuthority("USER")
-                .antMatchers("/api4/**").hasAnyAuthority("ADMIN","SUPER-ADMIN")
-                .antMatchers("/api4/{id}","/api4/get","/api4/user/{uId}/supplier/{supplierId}/").hasAuthority("USER")
+                .antMatchers("/orderDetails/**").permitAll()
+                .antMatchers("/csv/**","/csv1/**").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/product").permitAll()
+                .antMatchers("/supplier/**").permitAll()
                 .antMatchers("/role/**").hasAuthority("SUPER-ADMIN")
-                .antMatchers("/auth/create_user").permitAll()
-                .antMatchers("/api1/**").hasAnyAuthority("ADMIN","SUPER-ADMIN")
+                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/permission/**").hasAuthority("SUPER-ADMIN")
-                .antMatchers("/api2/**").hasAnyAuthority("USER","ADMIN","SUPER-ADMIN")
-                .antMatchers("/auth/super-admin").hasAuthority("SUPER-ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api3")
+@RequestMapping("/supplier")
 @RequiredArgsConstructor
 public class SupplierController {
     private final SupplierService supplierService;
@@ -26,11 +26,6 @@ public class SupplierController {
         List<SupplierDto> supplierDtos=this.supplierService.getAllUser();
         return new ResponseEntity<>(supplierDtos,HttpStatus.OK);
     }
-    @PostMapping("/admin/supplier/create")
-    public ResponseEntity<SupplierDto> createSupplier(@RequestBody SupplierDto supplierDto){
-        SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto);
-        return new ResponseEntity<>(supplierDto1,HttpStatus.CREATED);
-    }
     @PutMapping("/admin/suppliers/{id}")
     public ResponseEntity<SupplierDto> updateSupplier(@RequestBody SupplierDto supplierDto,@PathVariable Integer id){
         SupplierDto supplierDto1=this.supplierService.updateSupplier(id,supplierDto);
@@ -41,11 +36,10 @@ public class SupplierController {
         this.supplierService.deleteSupplier(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Supplier is deleted By User",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user/{uId}")
-    public ResponseEntity<SupplierDto> createSupplier(@RequestBody  SupplierDto supplierDto,
-                                                     @PathVariable Integer uId)
+    @PostMapping("/user")
+    public ResponseEntity<SupplierDto> createSupplier(@RequestBody  SupplierDto supplierDto)
     {
-        SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto,uId);
+        SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto);
         return new ResponseEntity<>(supplierDto1,HttpStatus.CREATED);
     }
 }

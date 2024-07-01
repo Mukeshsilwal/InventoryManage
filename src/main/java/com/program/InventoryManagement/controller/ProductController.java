@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api4")
+@RequestMapping("/product")
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
@@ -48,12 +48,10 @@ public class ProductController {
         this.productService.deleteProductById(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Product is deleted",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user/{uId}/supplier/{supplierId}/")
+    @PostMapping("/user/{uId}/supplier/")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto,
-                                                    @PathVariable Integer uId,
-                                                    @PathVariable Integer supplierId
-                                                    ){
-        ProductDto productDto1=this.productService.createProduct(productDto,uId,supplierId);
+                                                    @PathVariable Integer uId){
+        ProductDto productDto1=this.productService.createProduct(productDto,uId);
         return new ResponseEntity<>(productDto1,HttpStatus.CREATED);
     }
 }

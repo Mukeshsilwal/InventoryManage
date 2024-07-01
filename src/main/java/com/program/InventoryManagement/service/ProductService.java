@@ -10,6 +10,5 @@ public interface ProductService {
     List<ProductDto> getAllProduct();
     ProductDto getProductById(Integer id);
     void deleteProductById(Integer id);
-    ProductDto createProduct(ProductDto productDto,Integer uId,Integer supplierId);
-//    ProductDto createCart(ProductDto productDto,Integer id);
+    ProductDto createProduct(ProductDto productDto,Integer uId);
 }

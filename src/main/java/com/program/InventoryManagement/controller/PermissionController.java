@@ -16,12 +16,12 @@ import java.util.List;
 public class PermissionController {
     private final PermissionService permissionService;
 
-    @PostMapping("/")
+    @PostMapping("/post")
     public ResponseEntity<PermissionDto> createPermission(@RequestBody PermissionDto permissionDto){
         PermissionDto permissionDto1=this.permissionService.createPermission(permissionDto);
         return new ResponseEntity<>(permissionDto1, HttpStatus.CREATED);
     }
-    @GetMapping("/")
+    @GetMapping("/getAll")
     public ResponseEntity<List<PermissionDto>> getAllPermission(){
         List<PermissionDto> permissionDto=this.permissionService.getAllPermission();
         return new ResponseEntity<>(permissionDto,HttpStatus.OK);

@@ -1,7 +1,5 @@
 package com.program.InventoryManagement.service.serviceImpl;
 
-import com.program.InventoryManagement.entity.Order;
-import com.program.InventoryManagement.entity.Product;
 import com.program.InventoryManagement.entity.Supplier;
 import com.program.InventoryManagement.entity.User;
 import com.program.InventoryManagement.exception.ResourceNotFoundException;
@@ -60,15 +58,6 @@ public class SupplierServiceImpl implements SupplierService {
     public void deleteSupplier(Integer id) {
         Supplier supplier=this.supplierRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Supplier","id",id));
         this.supplierRepo.delete(supplier);
-    }
-
-    @Override
-    public SupplierDto createSupplier(SupplierDto supplierDto, Integer uId) {
-        User user=this.userRepo.findById(uId).orElseThrow(()->new ResourceNotFoundException("User","uId",uId));
-        Supplier supplier=this.dtoToSupplier(supplierDto);
-        supplier.setUser(user);
-        Supplier supplier1=this.supplierRepo.save(supplier);
-        return supplierToDto(supplier1);
     }
 
     public Supplier dtoToSupplier(SupplierDto supplierDto){

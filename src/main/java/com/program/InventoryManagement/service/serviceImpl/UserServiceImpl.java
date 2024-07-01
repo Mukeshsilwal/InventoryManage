@@ -7,7 +7,6 @@ import com.program.InventoryManagement.payload.UserDto;
 import com.program.InventoryManagement.repository.UserRepo;
 import com.program.InventoryManagement.service.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,8 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getAllUser() {
         List<User> users=this.userRepo.findAll();
-        List<UserDto> userDtos=users.stream().map((user)->this.userToDto(user)).collect(Collectors.toList());
-        return userDtos;
+        return users.stream().map(this::userToDto).collect(Collectors.toList());
     }
 
     @Override
@@ -72,11 +70,9 @@ public class UserServiceImpl implements UserService {
     }
 
     public User dtoToUser(UserDto userDto){
-        User user=this.modelMapper.map(userDto,User.class);
-        return user;
+        return this.modelMapper.map(userDto,User.class);
     }
     public UserDto userToDto(User user){
-        UserDto userDto=this.modelMapper.map(user,UserDto.class);
-        return userDto;
+        return this.modelMapper.map(user,UserDto.class);
     }
 }

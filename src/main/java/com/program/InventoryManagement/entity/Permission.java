@@ -24,6 +24,6 @@ public class Permission {
     private User user;
     @Transient
     @Enumerated(EnumType.STRING)
-    private Permission1 permission1;
+    private com.program.InventoryManagement.entity.Permission1 permission1;
 
 }

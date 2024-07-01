@@ -1,8 +1,5 @@
 package com.program.InventoryManagement.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.program.InventoryManagement.payload.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,13 +21,6 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int supplierId;
     private String location;
-
-
-    @ManyToOne
-    @JoinColumn(name="uId",referencedColumnName = "uId")
-    private User user;
     @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER)
     Set<Product> products=new HashSet<>();
-    @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER)
-    Set<Order> orders=new HashSet<>();
 }

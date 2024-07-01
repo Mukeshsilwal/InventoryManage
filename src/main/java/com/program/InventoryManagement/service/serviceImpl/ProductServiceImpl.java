@@ -61,11 +61,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto createProduct(ProductDto productDto, Integer uId, Integer supplierId) {
+    public ProductDto createProduct(ProductDto productDto, Integer uId) {
         User user=this.userRepo.findById(uId).orElseThrow(()->new ResourceNotFoundException("User","uId",uId));
-        Supplier supplier=this.supplierRepo.findById(supplierId).orElseThrow(()->new ResourceNotFoundException("Supplier","supplierId",supplierId));
         Product product=this.dtoToProduct(productDto);
-        product.setSupplier(supplier);
         product.setUser(user);
         Product product1=this.productRepo.save(product);
         return productToDto(product1);

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api2")
+@RequestMapping("/order")
 @RequiredArgsConstructor
 @Slf4j
 public class OrderController {

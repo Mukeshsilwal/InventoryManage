@@ -3,6 +3,7 @@ package com.program.InventoryManagement.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -26,6 +27,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="supplierId")
     private Supplier supplier;
+    @OneToMany(mappedBy = "order")
+    List<OrderDetails> orderDetails;
 
     public Order(String orderName, User user) {
         this.orderName=orderName;

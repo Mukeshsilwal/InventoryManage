@@ -10,6 +10,5 @@ public interface SupplierService {
     List<SupplierDto> getAllUser();
     SupplierDto getSupplierById(Integer id);
     void deleteSupplier(Integer id);
-    SupplierDto createSupplier(SupplierDto supplierDto,Integer uId);
 
 }

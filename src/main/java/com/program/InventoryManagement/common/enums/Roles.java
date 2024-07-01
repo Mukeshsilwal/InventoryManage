@@ -1,4 +1,4 @@
-package com.program.InventoryManagement.entity;
+package com.program.InventoryManagement.common.enums;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Roles {
