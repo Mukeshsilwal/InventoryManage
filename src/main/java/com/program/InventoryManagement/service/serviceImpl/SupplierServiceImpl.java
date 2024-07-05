@@ -1,10 +1,9 @@
 package com.program.InventoryManagement.service.serviceImpl;
 
+import com.program.InventoryManagement.entity.Product;
 import com.program.InventoryManagement.entity.Supplier;
-import com.program.InventoryManagement.entity.User;
 import com.program.InventoryManagement.exception.ResourceNotFoundException;
 import com.program.InventoryManagement.payload.SupplierDto;
-import com.program.InventoryManagement.payload.UserDto;
 import com.program.InventoryManagement.repository.OrderRepo;
 import com.program.InventoryManagement.repository.ProductRepo;
 import com.program.InventoryManagement.repository.SupplierRepo;
@@ -15,7 +14,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,14 +25,14 @@ public class SupplierServiceImpl implements SupplierService {
     private  final ProductRepo productRepo;
     private final OrderRepo orderRepo;
     @Override
-    public SupplierDto createSupplier(SupplierDto supplierDto) {
+    public SupplierDto createSupplier(SupplierDto supplierDto,int pId) {
         Supplier supplier=this.dtoToSupplier(supplierDto);
         Supplier supplier1=this.supplierRepo.save(supplier);
         return supplierToDto(supplier1);
     }
 
     @Override
-    public SupplierDto updateSupplier(Integer id, SupplierDto supplierDto) {
+    public SupplierDto updateSupplier(int id, SupplierDto supplierDto) {
         Supplier supplier=this.supplierRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Supplier","id",id));
         supplier.setSupplierName(supplierDto.getSupplierName());
         Supplier supplier1=this.supplierRepo.save(supplier);
@@ -49,15 +47,20 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierDto getSupplierById(Integer id) {
+    public SupplierDto getSupplierById(int id) {
         Supplier supplier=this.supplierRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Supplier","id",id));
         return supplierToDto(supplier);
     }
 
     @Override
-    public void deleteSupplier(Integer id) {
+    public void deleteSupplier(int id) {
         Supplier supplier=this.supplierRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Supplier","id",id));
         this.supplierRepo.delete(supplier);
+    }
+
+    @Override
+    public SupplierDto getProductBySupplierId(int id) {
+        return null;
     }
 
     public Supplier dtoToSupplier(SupplierDto supplierDto){
@@ -67,10 +70,6 @@ public class SupplierServiceImpl implements SupplierService {
     public SupplierDto supplierToDto(Supplier supplier){
         SupplierDto supplierDto=this.modelMapper.map(supplier,SupplierDto.class);
         return supplierDto;
-    }
-    public UserDto userToDto(User user){
-        UserDto userDto=this.modelMapper.map(user, UserDto.class);
-        return userDto;
     }
 
 }

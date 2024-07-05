@@ -96,22 +96,15 @@ public class BatchConfig {
         writer.setDataSource(this.dataSource);
         return writer;
     }
-    @Bean
-    public Job importProduct(){
-        return this.jobBuilderFactory.get("PRODUCT-IMPORT-JOB")
-                .incrementer(new RunIdIncrementer())
-                .flow(step1())
-                .end()
-                .build();
-    }
-    @Bean
-    public Job importProduct1(){
-        return this.jobBuilderFactory.get("ORDER-IMPORT-JOB")
-                .incrementer(new RunIdIncrementer())
-                .flow(step2())
-                .end()
-                .build();
-    }
+
+//    @Bean
+//    public Job importProduct1(){
+//        return this.jobBuilderFactory.get("ORDER-IMPORT-JOB")
+//                .incrementer(new RunIdIncrementer())
+//                .flow(step2())
+//                .end()
+//                .build();
+//    }
 
     @Bean
     public Step step1() {

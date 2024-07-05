@@ -17,7 +17,7 @@ public class SupplierController {
     private final SupplierService supplierService;
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<SupplierDto> getSupplierById(@PathVariable Integer id){
+    public ResponseEntity<SupplierDto> getSupplierById(@PathVariable int id){
         SupplierDto supplierDto=this.supplierService.getSupplierById(id);
         return new ResponseEntity<>(supplierDto, HttpStatus.OK);
     }
@@ -36,10 +36,10 @@ public class SupplierController {
         this.supplierService.deleteSupplier(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Supplier is deleted By User",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user")
-    public ResponseEntity<SupplierDto> createSupplier(@RequestBody  SupplierDto supplierDto)
+    @PostMapping("/create/{pid}")
+    public ResponseEntity<SupplierDto> createSupplier(@RequestBody  SupplierDto supplierDto,@PathVariable int pid)
     {
-        SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto);
+        SupplierDto supplierDto1=this.supplierService.createSupplier(supplierDto,pid);
         return new ResponseEntity<>(supplierDto1,HttpStatus.CREATED);
     }
 }

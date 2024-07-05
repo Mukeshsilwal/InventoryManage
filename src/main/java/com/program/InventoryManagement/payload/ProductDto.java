@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,11 +14,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class ProductDto {
     private String productName;
-    private int productId;
+    private int id;
     private int productNo;
-    private Date expireDate;
+    private LocalDateTime expireDate;
     private String stock;
-    private UserDto user;
-    private SupplierDto supplier;
-
+    List<OrderDetailsDto> orderDetails;
 }

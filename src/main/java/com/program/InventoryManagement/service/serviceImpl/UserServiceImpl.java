@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             throw new ResourceEmpty("USER ALREADY EXIST WITH EMAIL" +" "+ userDto.getEmail(), "User");
         }
         User user=this.dtoToUser(userDto);
-
+      user.setRole(userDto.getRole());
         User user1=this.userRepo.save(user);
         user1.setPassword(passwordEncoder.encode(user.getPassword()));
         return userToDto(user1);

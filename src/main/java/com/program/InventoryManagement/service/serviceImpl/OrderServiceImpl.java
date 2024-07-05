@@ -4,7 +4,6 @@ import com.program.InventoryManagement.entity.Order;
 import com.program.InventoryManagement.entity.Product;
 import com.program.InventoryManagement.entity.Supplier;
 import com.program.InventoryManagement.entity.User;
-import com.program.InventoryManagement.exception.ResourceEmpty;
 import com.program.InventoryManagement.exception.ResourceNotFoundException;
 import com.program.InventoryManagement.payload.OrderDto;
 import com.program.InventoryManagement.repository.OrderRepo;
@@ -74,7 +73,6 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto getOrderByUser(Integer uId) {
         User user=this.userRepo.findById(uId).orElseThrow(()->new ResourceNotFoundException("User","uId",uId));
         Order orders=this.orderRepo.findByUser(user);
-//        List<OrderDto> orderDtos=orders.stream().map((order)->this.orderToDto(order)).collect(Collectors.toList());
         return orderToDto(orders);
     }
 
@@ -95,14 +93,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto createOrder(OrderDto orderDto, Integer uId, Integer supplierId, Integer productId) {
-        User user=this.userRepo.findById(uId).orElseThrow(()->new ResourceNotFoundException("User","uId",uId));
+    public OrderDto createOrder(OrderDto orderDto, Integer supplierId, Integer productId) {
         Supplier supplier=this.supplierRepo.findById(supplierId).orElseThrow(()->new ResourceNotFoundException("Supplier","supplierId",supplierId));
         Product product=this.productRepo.findById(productId).orElseThrow(()->new ResourceNotFoundException("Product","productId",productId));
         Order order=this.dtoToOrder(orderDto);
         order.setProduct(product);
         order.setSupplier(supplier);
-        order.setUser(user);
         Order order1=this.orderRepo.save(order);
         return orderToDto(order1);
     }

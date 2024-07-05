@@ -16,7 +16,8 @@ import javax.persistence.*;
 public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "id")
+    private int id;
     private String quantity;
     private String price;
     private String totalPrice;

@@ -1,7 +1,6 @@
 package com.program.InventoryManagement.controller;
 
 import com.program.InventoryManagement.configuration.CsvExportService;
-import com.program.InventoryManagement.payload.OrderDto;
 import com.program.InventoryManagement.payload.ProductDto;
 import com.program.InventoryManagement.service.OrderService;
 import com.program.InventoryManagement.service.ProductService;
@@ -25,12 +24,6 @@ public class CsvController {
     public void exportData() throws IOException {
         List<ProductDto> data = productService.getAllProduct();
                 csvExportService.exportDataToCsv(data, "exportedProduct.csv");
-    }
-
-    @GetMapping("/export1")
-    public void exportData1() throws IOException {
-        List<OrderDto> data1 = orderService.getAllOrder();
-        csvExportService.exportDataToCsv1(data1, "exportedProduct.csv");
     }
 
 

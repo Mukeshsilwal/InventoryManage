@@ -1,6 +1,5 @@
 package com.program.InventoryManagement.service;
 
-import com.program.InventoryManagement.entity.Role;
 import com.program.InventoryManagement.payload.UserDto;
 
 import java.util.List;
@@ -12,6 +11,4 @@ public interface UserService {
     List<UserDto> getAllUser();
     UserDto getUserById(Integer uId);
     void deleteUser(Integer uId);
-//    boolean isUserAlreadyExist(String email);
-
 }

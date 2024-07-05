@@ -14,12 +14,13 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="supplier_")
+@Table(name="supplier_table")
 public class Supplier {
     private String supplierName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int supplierId;
+    @Column(name = "id")
+    private int id;
     private String location;
     @OneToMany(mappedBy = "supplier",fetch = FetchType.EAGER)
     Set<Product> products=new HashSet<>();

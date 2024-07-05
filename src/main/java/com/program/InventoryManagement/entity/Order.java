@@ -1,5 +1,6 @@
 package com.program.InventoryManagement.entity;
 
+import io.micrometer.core.lang.Nullable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,21 +12,23 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Order_")
+@Table(name="Order_table")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "oId")
     private int oId;
     private String orderName;
+    @Nullable
     @ManyToOne
-    @JoinColumn(name="uId",referencedColumnName = "uId")
+    @JoinColumn(name="user_id",referencedColumnName = "uId")
     private User user;
     @ManyToOne
-    @JoinColumn(name="productId")
+    @JoinColumn(name="productId",referencedColumnName = "id")
     private Product product;
     @ManyToOne
-    @JoinColumn(name="supplierId")
+    @JoinColumn(name="supplierId",referencedColumnName = "id")
     private Supplier supplier;
     @OneToMany(mappedBy = "order")
     List<OrderDetails> orderDetails;

@@ -1,7 +1,6 @@
 package com.program.InventoryManagement.controller;
 
 import com.program.InventoryManagement.exception.ApiResponse;
-import com.program.InventoryManagement.exception.ResourceEmpty;
 import com.program.InventoryManagement.payload.OrderDto;
 import com.program.InventoryManagement.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -52,12 +51,12 @@ public class OrderController {
                  this.orderService.deleteOrder(orderId);
                  return new ResponseEntity<>(new ApiResponse("Delete successfully",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user/{uId}/product/{productId}/supplier/{supplierId}")
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto,@PathVariable Integer uId,
+    @PostMapping("/product/{productId}/supplier/{supplierId}")
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto,
                                                 @PathVariable Integer productId,
                                                 @PathVariable Integer supplierId){
               logger.info("Relational end point is working perfectly");
-              OrderDto orderDto1=this.orderService.createOrder(orderDto,uId,supplierId,productId);
+              OrderDto orderDto1=this.orderService.createOrder(orderDto,supplierId,productId);
               return new ResponseEntity<>(orderDto1,HttpStatus.CREATED);
     }
 

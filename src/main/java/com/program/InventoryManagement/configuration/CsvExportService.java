@@ -3,11 +3,8 @@ package com.program.InventoryManagement.configuration;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-import com.program.InventoryManagement.entity.Product;
 import com.program.InventoryManagement.model.CsvData1;
-import com.program.InventoryManagement.payload.OrderDto;
 import com.program.InventoryManagement.payload.ProductDto;
-import com.program.InventoryManagement.repository.CsvRepo;
 import com.program.InventoryManagement.service.CsvService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,20 +27,6 @@ public class CsvExportService {
 
             for (ProductDto product : data) {
                 String[] row = {product.getProductName(),String.valueOf(product.getProductNo())};
-                csvWriter.writeNext(row);
-
-            }
-        }
-    }
-
-    public void exportDataToCsv1(List<OrderDto> data, String csvFilePath) throws IOException {
-        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(csvFilePath))) {
-
-            String[] header = {"orderName", "product","user","supplier"};
-            csvWriter.writeNext(header);
-
-            for (OrderDto orderDto : data) {
-                String[] row = {orderDto.getOrderName(), String.valueOf(orderDto.getProduct()), String.valueOf(orderDto.getSupplier()), String.valueOf(orderDto.getUser())};
                 csvWriter.writeNext(row);
 
             }

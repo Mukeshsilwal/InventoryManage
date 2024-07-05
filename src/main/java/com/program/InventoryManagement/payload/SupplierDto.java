@@ -1,6 +1,5 @@
 package com.program.InventoryManagement.payload;
 
-import com.program.InventoryManagement.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class SupplierDto {
     private String supplierName;
-    private int supplierId;
+    private int id;
     private String location;
-    private UserDto user;
+    private Set<ProductDto> products;
 }

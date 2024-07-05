@@ -1,6 +1,5 @@
 package com.program.InventoryManagement.controller;
 
-import com.program.InventoryManagement.entity.OrderDetails;
 import com.program.InventoryManagement.payload.OrderDetailsDto;
 import com.program.InventoryManagement.service.OrderDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +25,18 @@ public class OrderDetailsController {
         return new ResponseEntity<>(orderDetails, HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDetailsDto> updateOrderDetails(@RequestBody OrderDetailsDto orderDetailsDto,@PathVariable String id) {
+    public ResponseEntity<OrderDetailsDto> updateOrderDetails(@RequestBody OrderDetailsDto orderDetailsDto,@PathVariable int id) {
         OrderDetailsDto detailsDto=this.orderDetailsService.updateOrderDetails(orderDetailsDto,id);
         return new ResponseEntity<>(detailsDto, HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<OrderDetailsDto> deleteOrderDetails(@PathVariable String id) {
+    public ResponseEntity<OrderDetailsDto> deleteOrderDetails(@PathVariable int id) {
         this.orderDetailsService.deleteOrderDetails(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PostMapping("/product/{pId}/order/{oId}")
+    public ResponseEntity<OrderDetailsDto> addOrderDetails(@RequestBody OrderDetailsDto orderDetailsDto,@PathVariable int pId,@PathVariable int oId) {
+        OrderDetailsDto detailsDto=this.orderDetailsService.createOrderDetailsWithOrderAndProduct(orderDetailsDto,pId,oId);
+        return new ResponseEntity<>(detailsDto, HttpStatus.CREATED);
     }
 }

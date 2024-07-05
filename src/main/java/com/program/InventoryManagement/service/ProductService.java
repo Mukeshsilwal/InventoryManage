@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ProductService {
     ProductDto createProduct(ProductDto productDto);
-    ProductDto updateProduct(Integer id,ProductDto productDto);
+    ProductDto updateProduct(int id,ProductDto productDto);
     List<ProductDto> getAllProduct();
-    ProductDto getProductById(Integer id);
-    void deleteProductById(Integer id);
-    ProductDto createProduct(ProductDto productDto,Integer uId);
+    ProductDto getProductById(int id);
+    void deleteProductById(int id);
+    ProductDto createProductWithSupplier(ProductDto productDto,int sId);
 }

@@ -48,10 +48,10 @@ public class ProductController {
         this.productService.deleteProductById(id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Product is deleted",HttpStatus.OK),HttpStatus.OK);
     }
-    @PostMapping("/user/{uId}/supplier/")
+    @PostMapping("/supplier/{sId}")
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto,
-                                                    @PathVariable Integer uId){
-        ProductDto productDto1=this.productService.createProduct(productDto,uId);
+                                                    @PathVariable Integer sId){
+        ProductDto productDto1=this.productService.createProductWithSupplier(productDto,sId);
         return new ResponseEntity<>(productDto1,HttpStatus.CREATED);
     }
 }
